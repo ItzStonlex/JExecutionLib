@@ -2,29 +2,25 @@ package com.itzstonlex.executionlib.test;
 
 import com.itzstonlex.executionlib.ExecutionAppConfiguration;
 import com.itzstonlex.executionlib.ExecutionAppContext;
-import com.itzstonlex.executionlib.service.concurrent.Async;
-import com.itzstonlex.executionlib.service.schedule.RunForce;
-import com.itzstonlex.executionlib.service.schedule.RunForceLate;
-
-import java.util.concurrent.TimeUnit;
+import com.itzstonlex.executionlib.service.concurrent.ConcurrentService;
 
 public class BootstrapTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    throws Exception {
+
         ExecutionAppConfiguration configuration = new ExecutionAppConfiguration();
         // todo - configuration management.
 
         ExecutionAppContext.runServices(BootstrapTest.class, configuration);
+
+        // test library functions.
+        test(ConcurrentService.wrapProxy(new FunctionsTest()));
     }
 
-    @RunForceLate(delay = 5, unit = TimeUnit.SECONDS)
-    public void testFunction() {
-        System.out.println(Thread.currentThread().getName());
+    private static void test(FunctionsTest functionsTest) {
+        functionsTest.testFunction();
+        functionsTest.testAsyncCalculate();
     }
 
-    @Async
-    @RunForce
-    public void testAsyncCalculate() {
-        System.out.printf("[Thread %s]: %s%n", Thread.currentThread().getName(), 60 << 2 * 5 + 12);
-    }
 }
