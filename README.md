@@ -17,7 +17,7 @@ and initialization flexibility to run your code or project.
 
 ## HOW TO USE?
 
-**Full documentation: [[Wiki Page]](https://github.com/ItzStonlex/JExecutionLib/wiki)**
+**FULL DOCUMENTATION LINK: [[Wiki Page]](https://github.com/ItzStonlex/JExecutionLib/wiki)**
 
 ---
 
